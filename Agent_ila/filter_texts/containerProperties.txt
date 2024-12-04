@@ -1,0 +1,104 @@
+"""
+Well name:
+    - containerProperty: wellName
+    - unit: in
+    - description: Well name.
+    - data type: string
+
+Hole Size:
+    - containerProperty: holeSize
+    - unit: in
+    - description: Diameter of the drilled hole in inches.
+    - data type: float
+
+Bit Measured Depth:
+    - containerProperty: bitMeasuredDepth
+    - unit: m
+    - description: Depth of the drill bit from the surface, measured in meters.
+    - data type: float
+
+Hole Depth Measured:
+    - containerProperty: holeDepthMeasured
+    - unit: m
+    - description: Total depth of the drilled hole, measured in meters.
+    - data type: float
+
+Average Rate of Penetration (ROP):
+    - containerProperty: averageROP
+    - unit: m/hr
+    - description: The average speed at which the drill bit advances into the formation.
+    - data type: float
+
+Surface Torque:
+    - containerProperty: surfaceTorque
+    - unit: Nm
+    - description: Rotational force applied to the drill string at the surface.
+    - data type: float
+
+Surface RPM:
+    - containerProperty: surfaceRPM
+    - unit: rpm
+    - description: Rotational speed of the drill string at the surface, in revolutions per minute.
+    - data type: float
+
+Weight on Bit:
+    - containerProperty: weightOnBit
+    - unit: N
+    - description: Downward force applied to the drill bit during drilling.
+    - data type: float
+
+Flow Rate In:
+    - containerProperty: flowIn
+    - unit: m³/s
+    - description: Volume of drilling fluid pumped into the wellbore per second.
+    - data type: float
+
+Block Position:
+    - containerProperty: blockPosition
+    - unit: m
+    - description: Vertical position of the traveling block used in hoisting operations.
+    - data type: float
+
+Mud Weight In:
+    - containerProperty: mudWeightIn
+    - unit: kg/m³
+    - description: Density of the drilling fluid entering the wellbore.
+    - data type: float
+
+Bit Size:
+    - containerProperty: bitSize
+    - unit: in
+    - description: Diameter of the drill bit in inches.
+    - data type: float
+
+Lateral Vibration:
+    - containerProperty: lateralVibration
+    - unit: dimensionless
+    - description: Intensity of sideways vibration experienced by the drill string.
+    - data type: float
+
+Axial Vibration:
+    - containerProperty: axialVibration
+    - unit: dimensionless
+    - description: Intensity of vertical vibration experienced by the drill string.
+    - data type: float
+
+Bit RPM:
+    - containerProperty: bitRPM
+    - unit: rotations per minute
+    - description: Rotational speed of the drill bit, in revolutions per minute.
+    - data type: float
+
+Drilled Formation:
+    - containerProperty: formation
+    - unit: None
+    - description: Geological layer being drilled.
+    - data type: string
+
+Mechanical Specific Energy (MSE):
+    - containerProperty: mechanicalSpecificEnergy
+    - unit: mPa
+    - description: Energy required to remove a unit volume of rock during drilling.
+    - data type: float
+
+"""

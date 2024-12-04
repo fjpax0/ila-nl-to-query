@@ -1,0 +1,1 @@
+"```json\n{\"filter\": {\"equals\": {\"property\": [ILA_SPACE, ILA_CONTAINER_ID, \"formation\"], \"value\": \"Hugin\"}}}\n```"
