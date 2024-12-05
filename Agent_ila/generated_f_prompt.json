@@ -1,1 +1,1 @@
-"```json\n{\"filter\": {\"equals\": {\"property\": [ILA_SPACE, ILA_CONTAINER_ID, \"formation\"], \"value\": \"Hugin\"}}}\n```"
+{"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"avg_averageROP": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}

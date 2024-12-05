@@ -1,0 +1,145 @@
+Container Properties:
+container_properties_with_names = {
+    "surfaceTorque": {
+        "type": "Float64",
+        "description": "Torque applied to the drill string at the surface. Unit: Newton-meters.",
+        "name": "Surface Torque"
+    },
+    "averageROP": {
+        "type": "Float64",
+        "description": "Average rate of penetration of the drill bit. Most closely associated with Drilling performance. Unit: meters per hour.",
+        "name": "Average Rate of Penetration (ROP)"
+    },
+    "surfaceRPM": {
+        "type": "Float64",
+        "description": "Rotational speed of the drill string at the surface. Unit: Revolutions per Minute.",
+        "name": "Surface Rotations Per Minute (RPM)"
+    },
+    "weightOnBit": {
+        "type": "Float64",
+        "description": "Force applied to the drill bit during drilling. Unit: Newtons.",
+        "name": "Weight on Bit"
+    },
+    "bitMeasuredDepth": {
+        "type": "Float64",
+        "description": "Measured depth of the drill bit from the surface. Unit: meters.",
+        "name": "Bit Measured Depth"
+    },
+    "flowIn": {
+        "type": "Float64",
+        "description": "Volume of drilling fluid pumped into the wellbore. Unit: cubic meters per second.",
+        "name": "Flow In"
+    },
+    "blockPosition": {
+        "type": "Float64",
+        "description": "Position of the traveling block in vertical distance. Unit: meters.",
+        "name": "Block Position"
+    },
+    "holeDepthMeasured": {
+        "type": "Float64",
+        "description": "Total depth of the drilled hole from the surface. Unit: meters.",
+        "name": "Hole Depth Measured"
+    },
+    "mudWeightIn": {
+        "type": "Float64",
+        "description": "Density of the drilling mud entering the wellbore. Unit: kilograms per cubic meter.",
+        "name": "Mud Weight In"
+    },
+    "bitSize": {
+        "type": "Float64",
+        "description": "Diameter of the drill bit used for drilling. Unit: inches.",
+        "name": "Bit Size"
+    },
+    "holeOpener": {
+        "type": "Float64",
+        "description": "Indicates if a hole opener tool is present. Unit: None.",
+        "name": "Hole Opener"
+    },
+    "downholeMotorPresence": {
+        "type": "Float64",
+        "description": "Indicates if a downhole motor is present. Unit: None.",
+        "name": "Downhole Motor Presence"
+    },
+    "bitRunNumber": {
+        "type": "Float64",
+        "description": "Identifier for the bit run. Unit: dimensionless.",
+        "name": "Bit Run Number"
+    },
+    "lateralVibration": {
+        "type": "Float64",
+        "description": "Magnitude of lateral vibration in the drill string. Unit: dimensionless.",
+        "name": "Lateral Vibration"
+    },
+    "axialVibration": {
+        "type": "Float64",
+        "description": "Magnitude of axial vibration in the drill string. Unit: dimensionless.",
+        "name": "Axial Vibration"
+    },
+    "bitRPM": {
+        "type": "Float64",
+        "description": "Rotational speed of the drill bit. Unit: Revolutions per Minute.",
+        "name": "Bit Rotations Per Minute (RPM)"
+    },
+    "formation": {
+        "type": "Text",
+        "description": "Name of the geological formation being drilled. Unit: None.",
+        "example values": ['Rodby', 'Asgard', 'Tor'],
+        "name": "Formation"
+    },
+    "mechanicalSpecificEnergy": {
+        "type": "Float64",
+        "description": "Energy required to remove a unit volume of rock. Unit: megapascals.",
+        "name": "Mechanical Specific Energy"
+    },
+    "dailyDrillingReport": {
+        "type": "Text",
+        "description": "Text associated with the daily drilling report. Contains operational details relevant to time and depth. Unit: None.",
+        "name": "Daily Drilling Report"
+    },
+    "ddrIdentifier": {
+        "type": "Float64",
+        "description": "Identifier for the daily drilling report. Unit: None.",
+        "name": "Daily Drilling Report Identifier"
+    },
+    "inclination": {
+        "type": "Float64",
+        "description": "Angle of the wellbore from vertical. Unit: degrees.",
+        "name": "Inclination"
+    },
+    "azimuth": {
+        "type": "Float64",
+        "description": "Direction of the wellbore in horizontal plane. Unit: degrees.",
+        "name": "Azimuth"
+    },
+    "trueVerticalDepth": {
+        "type": "Float64",
+        "description": "Vertical depth of the wellbore from the rotary table. Unit: meters.",
+        "name": "True Vertical Depth"
+    },
+    "latitude": {
+        "type": "Float64",
+        "description": "Latitude of the wellbore location. Unit: degrees.",
+        "name": "Latitude"
+    },
+    "longitude": {
+        "type": "Float64",
+        "description": "Longitude of the wellbore location. Unit: degrees.",
+        "name": "Longitude"
+    },
+    "rigName": {
+        "type": "Text",
+        "description": "Name of the drilling rig. Unit: None.",
+        "name": "Rig Name"
+    },
+    "drillBitUsed": {
+        "type": "Text",
+        "description": "Identifier for the drill bit used. Unit: None.",
+        "name": "Drill Bit Used"
+    },
+    "wellbore": {
+        "type": "Text",
+        "description": "Identifier or name of the wellbore. Unit: None.",
+        "example values": ['15_9-F-11 A', '15_9-F-15 C', '15_9-F-19 A', '15-F-1 C'],
+        "name": "Wellbore"
+    }
+}

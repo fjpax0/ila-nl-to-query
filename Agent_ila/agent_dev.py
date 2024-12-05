@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-
+import json
 class IlaFilter:
     """
     Creates an ILA stream filter.
@@ -13,18 +13,23 @@ class IlaFilter:
         filter_prompt (str): llm prompt used for generating the filter
     """
 
-    def __init__(self, properties_path :str = 'filter_texts/containerProperties.txt', 
-                 filter_struct: str = 'filter_texts/filterStruc.txt' , 
-                 filter_args: str = 'filter_texts/filterArgs.txt',
-                 filter_sample: str = 'filter_texts/filterSample.txt' ):
+    def __init__(self, 
+                 container_properties :str = 'prompts/container_props.txt', 
+                # filter_struct: str = 'filter_texts/filterStruc.txt' , 
+                 args_filter: str = 'prompts/args_filter.txt',
+                 args_aggregate: str = 'prompts/args_aggregation.txt',
+                examples: str = 'prompts/examples.txt',
+                 header: str = 'prompts/header.txt') -> None:
     
 
         #load the .txt files
-        self.container_properties = open(properties_path, 'r', encoding='utf-8').read()
-        self.filter_struct = open(filter_struct, 'r', encoding='utf-8').read()
-        self.filter_args = open(filter_args, 'r', encoding='utf-8').read()
-        self.filter_sample = open(filter_sample, 'r', encoding='utf-8').read()
-        self.filter_prompt = ""
+        self.container_properties = open(container_properties, 'r', encoding='utf-8').read()
+        #self.filter_struct = open(filter_struct, 'r').read()
+        self.filter_args = open(args_filter, 'r', encoding='utf-8').read()
+        self.filter_aggregate = open(args_aggregate, 'r', encoding='utf-8').read()
+        self.filter_sample = open(examples, 'r', encoding='utf-8').read()
+        self.header = open(header, 'r', encoding='utf-8').read()
+        self.filter_prompt = None
 
 
 
@@ -35,20 +40,8 @@ class IlaFilter:
             str: _description_
         """
 
-        header = """You are an assistant to create a filter for our own database. Essentially you will be provided with the following: \n
-        1. The structure of the filter \n
-        2. The arguments that the filter can take \n
-        3. A sample filter \n
-        4. The properties of the container \n
-        5. The user query \n
-        6. The value of ILA_SPACE = "test_ILA"
-        7. The values of ILA_CONTAINER_ID = "test_logs_container"
-
-        Your task is to create a filter based on the user query. The final output should be only the dictionary format of the filter. \n
-        """
-
        # filter_prompt = header + '\n' 
-        compiled_texts = "these are the possible filter arguments: \n" + self.filter_args + '\n' + "this is the structure of the filter: \n" + self.filter_struct + '\n' + "this is a sample filter structure: \n" + self.filter_sample + '\n' + "these are the properties of the container: \n" + self.container_properties + '\n' + "User query: \n" + user_query
+        compiled_texts = self.container_properties + '\n' + self.filter_args + '\n' + self.filter_aggregate + '\n' + self.filter_sample
         
        # self.filter_struct + '\n' + self.filter_args + '\n' + self.filter_sample + '\n' + self.container_properties
 
@@ -58,10 +51,11 @@ class IlaFilter:
             {
                 "role": "system",
                 "content": (
-                    header
+                    self.header
                 ),
             },
-            {"role": "user", "content": f"This is the data: {compiled_texts}"},
+            {"role": "system", "content":  compiled_texts},
+            {"role": "user", "content":  user_query},
         ],
        # "functions": functions,
       #  "functionCall": {"name": "get_the_fact_and_joke"},
@@ -72,7 +66,10 @@ class IlaFilter:
 
         self.filter_prompt = body
 
-    
+        #save in a text file
+        #with open('filter_prompt.txt', 'w') as file:
+        #    file.write(self.filter_prompt)
+        #print(self.filter_prompt)
 
        
        
@@ -101,4 +98,4 @@ class IlaFilter:
         
         
 
-        return response_items["message"]['content']
+        return json.loads(response_items["message"]['content'])

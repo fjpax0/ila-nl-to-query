@@ -8,4 +8,4 @@ Example 2: One bolean filter with two leaf filters. The first leaf filter's comp
 
 Example 3: Two filters for the formation property and the holeDepthMeasured. The user query: "Give me the data drilled in the Hugin formation from a depth range of 3232 to 3240."
 
-{"filter": {"and": [{"equals": {"property": [ILA_SPACE, ILA_CONTAINER_ID, "formation"], "value": "Hugin"}}, {"range": {"property": [ILA_SPACE, ILA_CONTAINER_ID, "holeDepthMeasured"], "gte": 3232, "lte": 3240}}]}}
+{"filter": {"and": [{"equals": {"property": [ILA_SPACE, ILA_CONTAINER_ID, "formation"], "value": "Hugin"}}, {"range": {"property": [ILA_SPACE, ILA_CONTAINER_ID, "holeDepthMeasured"], "gte": 3232, "lte": 3240}}]}} 
