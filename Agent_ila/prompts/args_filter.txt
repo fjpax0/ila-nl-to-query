@@ -1,0 +1,23 @@
+"""There are two categories of filters: first the boolean filter and the leaf filters. For each filter, there is a corresponding component that accompanies it serving as a key for values used for the filter. 
+The filters provide follows the format: "filter" : component
+
+We have boolean filters where each has a component 'value'
+
+boolean filters:
+    - "and" : value
+    - "or" : value
+    - "not" : value
+
+We also have a leaf filter where each has a component 'value'. For range, the components could be 'gte', 'gt', 'lte', 'lt'
+leaf filters.
+
+leaf filters:
+    - "matchAll" : value; description: All the listed items must match the clause.
+    - "exists" : value; description: Will match records that have a value in the specified property.
+    - "equals" : value; description: Matches records that contain the exact value in the provided property. Only apply this filter to properties containing a single value.
+    - "hasData" : value; description: Matches records where data is present in the referenced containers.
+    - "prefix" : value; description: Matches records that have the prefix in the identified property. This filter is only supported for single value text properties.
+    - "range" : ('gte': Greater than or equal to, 'gt': Greater than, 'lte': Less than or equal to, 'lt': Less than); description: Matches records that contain terms within the provided range. The range must include an upper and/or a lower bound. It is not allowed to specify two upper or lower bounds, e.g. gte and gt, in the same filter. gte: Greater than or equal to. gt: Greater than. lte: Less than or equal to. lt: Less than.
+    - "in" : value; description: Matches records where the property exactly matches one of the given values. Only apply this filter to properties containing a single value.
+    - "containsAll" : value; description: Matches records where the property contains all the given values. Only apply this filter to multivalued properties.
+    - "containsAny" : value; description: Matches records where the property contains one or more of the given values. Only apply this filter to multivalued properties. """

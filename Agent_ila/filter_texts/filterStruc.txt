@@ -1,7 +1,7 @@
 """
 This is the most basic filter structure with one boolean filter and two leaf filters.  The two leaf filters are essentially the same except for the first leaf component with two values inside a list, and the second leaf component has 1 value. 
 
-{'boolean filter': [{'leaf filter': {'property': ['space name', 'container name', 'container property'], 'values or value or range': ['property component value 1', 'property component value 2']}}, {'leaf filter': {'property': ['space name', 'container name', 'container property'], 'values or value or range': 'property component value 1'}}]}
+{'boolean filter': [{'leaf filter': {'property': ['space name', 'container name', 'container property'], 'values or value or range': ['property component value 1', 'property component value 2']}}, {'leaf filter': {'property': ['space name', 'container name', 'container property'], 'values or value or range': 'property component'}}]}
 
 During the generation of filter based on the user query, you only need to fill in the values inside the filter dictionary for the following values if necessary and applicable:
 1. 'boolean filter'

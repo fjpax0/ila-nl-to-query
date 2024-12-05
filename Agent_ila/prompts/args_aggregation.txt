@@ -1,0 +1,9 @@
+""" We also have aggregations arguments where each has a component 'value'. Below we give the description if each argument.
+aggregations:
+    - "avg" : value; description: Calculates the average from the data stored by the specified property. This aggregation uses an average mean calculation, and not an integral mean.
+    - "count" : value; description: Counts the number of items. When you specify a property, it returns the number of non-null values for that property.
+    - "equals" : value; description: Matches records that contain the exact value in the provided property. Only apply this filter to properties containing a single value.
+    - "min" : value; description: The function will calculate, and return, the lowest - min - value for a property.
+    - "max" : value; description: The function will calculate, and return, the highest - max - value for the property.
+    - "sum" : Calculates the sum from the values of the specified property.
+    - "uniqueValues" : Request unique value buckets aggregate on of the specified property. Each bucket is defined by values array and has the number of the values occurrences. """
