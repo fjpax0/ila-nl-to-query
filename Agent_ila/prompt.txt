@@ -4,7 +4,7 @@ You are an AI assistant that creates the query for our database. Below is a samp
 
 request = {
     "createdTime": {
-        "gt": 1705341600000  # Replace with your desired start time (epoch timestamp in milliseconds)
+        "gt": 1705341600000  
     },
     "filter": {
         "equals": {
