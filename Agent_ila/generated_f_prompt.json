@@ -1,1 +1,690 @@
-{"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"avg_averageROP": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}
+[
+    {
+        "user_query": "What is the average inclination that the Hugin formation is drilled?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "formation"
+                    ],
+                    "value": "Hugin"
+                }
+            },
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "inclination"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": 68.38732426566486
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average ROP in the Hidra formation?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "formation"
+                    ],
+                    "value": "Hidra"
+                }
+            },
+            "aggregates": {
+                "avg_averageROP": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "averageROP"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_averageROP": {
+                    "avg": 15.642930829075688
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average ROP in the Hidra formation?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "formation"
+                    ],
+                    "value": "Hidra"
+                }
+            },
+            "aggregates": {
+                "avg_averageROP": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "averageROP"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_averageROP": {
+                    "avg": 15.642930829075688
+                }
+            }
+        }
+    },
+    {
+        "user_query": "which formations are drilled in well 15/9-F-11 A",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15_9-F-11 A"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": []
+                }
+            }
+        }
+    },
+    {
+        "user_query": "which formations are drilled in well 15-F-1 C",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Hugin",
+                            "count": 38572
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4357
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3689
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 3401
+                        },
+                        {
+                            "value": "Hidra",
+                            "count": 2668
+                        },
+                        {
+                            "value": "Blodoks",
+                            "count": 1051
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 960
+                        },
+                        {
+                            "value": "Heather",
+                            "count": 393
+                        },
+                        {
+                            "value": "Lista",
+                            "count": 346
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "user_query": "Which formations are drilled in well 15-F-1 C?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Hugin",
+                            "count": 38572
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4357
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3689
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 3401
+                        },
+                        {
+                            "value": "Hidra",
+                            "count": 2668
+                        },
+                        {
+                            "value": "Blodoks",
+                            "count": 1051
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 960
+                        },
+                        {
+                            "value": "Heather",
+                            "count": 393
+                        },
+                        {
+                            "value": "Lista",
+                            "count": 346
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "user_query": "Which formations are drilled in well 15-F-1 C?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Hugin",
+                            "count": 38572
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4357
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3689
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 3401
+                        },
+                        {
+                            "value": "Hidra",
+                            "count": 2668
+                        },
+                        {
+                            "value": "Blodoks",
+                            "count": 1051
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 960
+                        },
+                        {
+                            "value": "Heather",
+                            "count": 393
+                        },
+                        {
+                            "value": "Lista",
+                            "count": 346
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "user_query": "Which formations are drilled in well 15-F-1 C?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Hugin",
+                            "count": 38572
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4357
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3689
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 3401
+                        },
+                        {
+                            "value": "Hidra",
+                            "count": 2668
+                        },
+                        {
+                            "value": "Blodoks",
+                            "count": 1051
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 960
+                        },
+                        {
+                            "value": "Heather",
+                            "count": 393
+                        },
+                        {
+                            "value": "Lista",
+                            "count": 346
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average inclination that the Hugin formation is drilled?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "formation"
+                    ],
+                    "value": "Hugin"
+                }
+            },
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "inclination"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": 68.38732426566486
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average inclination that the Hugin formation is drilled?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "formation"
+                    ],
+                    "value": "Hugin"
+                }
+            },
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "inclination"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_inclination": {
+                    "avg": 68.38732426566486
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average rate of penetration for well 15-F-11 A?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-11 A"
+                }
+            },
+            "aggregates": {
+                "avg_rop": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "averageROP"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_rop": {
+                    "avg": 20.54695696399048
+                }
+            }
+        }
+    },
+    {
+        "user_query": "What is the average rate of penetration for well 15-F-1 C?",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "avg_rop": {
+                    "avg": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "averageROP"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "avg_rop": {
+                    "avg": 23.407790792254847
+                }
+            }
+        }
+    },
+    {
+        "user_query": "Show me the formations drilled in well 15-F-11 A.",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-11 A"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Tor",
+                            "count": 17831
+                        },
+                        {
+                            "value": "Hod",
+                            "count": 15968
+                        },
+                        {
+                            "value": "Hugin",
+                            "count": 8154
+                        },
+                        {
+                            "value": "Ty",
+                            "count": 6957
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4236
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3956
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 3456
+                        },
+                        {
+                            "value": "Blodoeks",
+                            "count": 2398
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 1946
+                        },
+                        {
+                            "value": "Ekofisk",
+                            "count": 1664
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "user_query": "Show me the formations drilled in well 15-F-1 C.",
+        "generated_ila_filter": {
+            "filter": {
+                "equals": {
+                    "property": [
+                        "wells_data_model",
+                        "test_depth_logs_container",
+                        "wellbore"
+                    ],
+                    "value": "15-F-1 C"
+                }
+            },
+            "aggregates": {
+                "unique_formations": {
+                    "uniqueValues": {
+                        "property": [
+                            "wells_data_model",
+                            "test_depth_logs_container",
+                            "formation"
+                        ]
+                    }
+                }
+            }
+        },
+        "ila_result": {
+            "aggregates": {
+                "unique_formations": {
+                    "buckets": [
+                        {
+                            "value": "Hugin",
+                            "count": 38572
+                        },
+                        {
+                            "value": "Hugin base",
+                            "count": 4357
+                        },
+                        {
+                            "value": "Asgard",
+                            "count": 3689
+                        },
+                        {
+                            "value": "Rodby",
+                            "count": 3401
+                        },
+                        {
+                            "value": "Hidra",
+                            "count": 2668
+                        },
+                        {
+                            "value": "Blodoks",
+                            "count": 1051
+                        },
+                        {
+                            "value": "Draupne",
+                            "count": 960
+                        },
+                        {
+                            "value": "Heather",
+                            "count": 393
+                        },
+                        {
+                            "value": "Lista",
+                            "count": 346
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]
