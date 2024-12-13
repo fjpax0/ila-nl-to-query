@@ -1,9 +1,0 @@
-"""
-We have aggregates functions and their corresponding filter property values. filter property values must be used on the filter.
-- average - avg
-- count - count
-- min - min
-- max - max
-- sum - sum
-- unique values - uniqueValues
-"""
