@@ -3,7 +3,7 @@ import logging
 from log_utils.logging_helper import Logger
 from dotenv import load_dotenv
 from cogniteClient.congite_interac import get_client
-from agent_dev import IlaFilter
+from Agent_ila.src.agent_dev import IlaFilter
 # Load environment variables
 from src.queryStream import query_ila
 from src.logs_filters import append_to_json
