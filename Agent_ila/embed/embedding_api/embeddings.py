@@ -9,7 +9,7 @@ from typing import Dict, List
 class CreateEmbeddings:
     def __init__(self, client=None, model:str = 'azure/text-embedding-3-large'):
         if client is None:
-            self.client = get_client(interactive=True)
+            self.client = get_client(interactive=True, cdf_version="alpha")
             self.model = model
             
         else:
