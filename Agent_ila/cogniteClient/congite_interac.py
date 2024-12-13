@@ -48,7 +48,7 @@ def authenticate_azure() -> dict[str, Any]:
     return result
 
 
-def get_client(interactive: bool = False) -> CogniteClient:
+def get_client(interactive: bool = False, cdf_version= None) -> CogniteClient:
     """Get a CogniteClient instance."""
     if interactive:
         creds = authenticate_azure()
@@ -60,11 +60,19 @@ def get_client(interactive: bool = False) -> CogniteClient:
             client_secret=CLIENT_SECRET,
             scopes=SCOPES,
         )
-
-    config = ClientConfig(
-        project=COGNITE_PROJECT,
-        credentials=credentials,
-        base_url=BASE_URL,
-        client_name="well_delivery_demo",
-    )
+    if cdf_version is not None:
+        config = ClientConfig(
+            project=COGNITE_PROJECT,
+            credentials=credentials,
+            headers={"cdf-version": cdf_version},
+            base_url=BASE_URL,
+            client_name="well_delivery_demo",
+        )
+    else:
+        config = ClientConfig(
+            project=COGNITE_PROJECT,
+            credentials=credentials,
+            base_url=BASE_URL,
+            client_name="well_delivery_demo",
+        )
     return CogniteClient(config)
