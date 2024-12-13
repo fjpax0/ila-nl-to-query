@@ -127,3 +127,4 @@ dmypy.json
 *notes.txt
 *good_ila_queries.ipynb
 *ila_dev.ipynb
+logs/
