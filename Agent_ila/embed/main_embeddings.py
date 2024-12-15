@@ -10,6 +10,32 @@ from pinecone_client.pc import PineconeClient
 
 DATA_PATH = 'data_to_embed/witsml_queries_samp.jsonl'
 
+def _format_jsonl_entry(jsonl_entry):
+    """
+    Formats a single JSONL entry into the specified string format.
+
+    Args:
+        jsonl_entry (str): A single JSONL formatted string.
+
+    Returns:
+        str: The formatted output string.
+    """
+    # Parse the JSONL entry into a dictionary
+    data = jsonl_entry
+
+    # Extract constants, user_query, and generated_query
+    constants = data.get("constants", {})
+    user_query = data.get("user_query", "")
+    generated_query = data.get("generated_query", {})
+
+    # Format the output
+    formatted = (
+        f"Constants: {constants}\n"
+        f"User query: {user_query}\n"
+        f"Generated query: {generated_query}\n"
+    )
+
+    return formatted
 
 def main():
     # Initialize Pinecone client
@@ -24,7 +50,7 @@ def main():
             
             # Access fields from the JSON object
             user_query = record.get("user_query", "No user query found")
-            ila_filter = record.get("generated_query", {})
+            #ila_filter = record.get("generated_query", {})
             
             # Create embeddings
             #test if user_query is a str if not make it a string
@@ -35,7 +61,7 @@ def main():
 
             assert len(embeddings) == 1, "Expected one embedding to be returned because we iterate over the jsonl file"
     
-            vectors_list = [{'id':embeddings[0]['text'], "values": embeddings[0]['embedding'], 'metadata': {'ila_filter':str(ila_filter)}}]
+            vectors_list = [{'id':embeddings[0]['text'], "values": embeddings[0]['embedding'], 'metadata': {'ila_sample':_format_jsonl_entry(record)}}]
             print(vectors_list)
             # Upsert embeddings to Pinecone
             pc.insert(vector=vectors_list, namespace='user_query')
