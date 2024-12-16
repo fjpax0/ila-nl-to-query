@@ -3,7 +3,7 @@ import logging
 from log_utils.logging_helper import Logger
 from dotenv import load_dotenv
 from cogniteClient.congite_interac import get_client
-from Agent_ila.src.agent_dev import IlaFilter
+from src.agent_dev import IlaFilter
 # Load environment variables
 from src.queryStream import query_ila
 from src.logs_filters import append_to_json
@@ -14,7 +14,7 @@ from src.summarizer import summarizer
 load_dotenv()
 
 # Initialize logger
-logger = Logger(level=logging.INFO)  # Ensure INFO level logs are visible
+logger = Logger(level=logging.DEBUG)  # Ensure INFO level logs are visible
 
 def main(user_query: str, client):
     try:
@@ -48,7 +48,7 @@ def main(user_query: str, client):
     #"which formations are drilled in well 15-F-1 C"# and 15/9-F-11 A
 
 if __name__ == "__main__":
-    raw_user_query = "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
+    raw_user_query ="which rig performed on hole sections 8.5 bit size"#"What is the average ROP in the Tor formation?"# "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
 
     # Choose authentication mode
     interactive_mode = True  # Set to False for client credentials authentication
