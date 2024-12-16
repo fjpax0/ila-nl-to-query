@@ -16,6 +16,7 @@ def query_preprocess(raw_query: str, client) -> list:
         "You are an AI assistant that preprocesses a user query before generating a database-specific query. "
         "Your task is to evaluate if the user query requires several queries to be executed in the database or if it can be executed in a single query. "
         "The expected output should be a list indicating whether it is a single query or multiple queries."
+        "If the query would require a recurssive filter or aggreagte, this is considered as one."
     )
     
     # Examples for context
@@ -27,6 +28,8 @@ def query_preprocess(raw_query: str, client) -> list:
         "{'Query': ['Show me the formations drilled in wells 1/2-1 and 1/2-2.']}\n\n"
         "Example 3: Raw user query: Show me the formations drilled in each well 1/2-1 and 1/2-2.\n"
         "{'Query': ['Show me the formations drilled in well 1/2-1.', 'Show me the formations drilled in well 1/2-2.']}\n"
+        "Example 4: Raw user query: Calculate the average of the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.\n"
+        "{'Query': ['Calculate the average of the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.']}\n"
     )
     
     # Body for the AI request
