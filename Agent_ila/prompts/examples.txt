@@ -22,6 +22,7 @@ Constants: {"ILA_SPACE": "wells_data_model","ILA_CONTAINER_ID": "test_depth_logs
 User query: Which drill bit has the highest ROP in the Tor Formation?
 Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"by_drill_bit": {"uniqueValues": {"property": ["wells_data_model", "test_depth_logs_container", "drillBitUsed"], "aggregates": {"max_rop": {"max": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}}}}
 
+\n\n
 Example 5: 
 Constants: {"ILA_SPACE": "wells_data_model","ILA_CONTAINER_ID": "test_depth_logs_container"}
 User query: Which formations were drilled in well 15-F-11 A and 15-F-1 C?
