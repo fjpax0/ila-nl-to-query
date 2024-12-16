@@ -1,6 +1,6 @@
 import os
 import logging
-from log_utils.logging_helper import Logger
+from log_utils.logger_config import logger
 from dotenv import load_dotenv
 from cogniteClient.congite_interac import get_client
 from src.agent_dev import IlaFilter
@@ -13,8 +13,7 @@ from src.summarizer import summarizer
 # Load environment variables
 load_dotenv()
 
-# Initialize logger
-logger = Logger(level=logging.DEBUG)  # Ensure INFO level logs are visible
+ # Ensure INFO level logs are visible
 
 def main(user_query: str, client):
     try:

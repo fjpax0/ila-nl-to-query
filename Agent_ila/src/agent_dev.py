@@ -3,11 +3,11 @@ from embed.pinecone_client.pc import PineconeClient
 import json
 import logging
 from embed.embedding_api.embeddings import CreateEmbeddings
-from log_utils.logging_helper import Logger
+
 pc_client = PineconeClient()
 create_emb = CreateEmbeddings()
 
-logger = Logger(level=logging.DEBUG)
+from log_utils.logger_config import logger
 class IlaFilter:
     """
     Creates an ILA stream filter.

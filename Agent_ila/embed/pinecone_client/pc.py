@@ -7,8 +7,9 @@ import logging
 pc = Pinecone(api_key=os.getenv('PINECONE_API'))
 index = pc.Index("ilastream")
 import logging
-from log_utils.logging_helper import Logger
-logger = Logger(level=logging.DEBUG)
+
+from log_utils.logger_config import logger
+
 class PineconeClient:
     """_summary_
     """
