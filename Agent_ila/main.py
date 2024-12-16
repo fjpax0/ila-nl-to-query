@@ -22,7 +22,7 @@ def main(user_query: str, client):
         logger.debug("Initializing IlaFilter...")
         ila_filter = IlaFilter()
         generated_ila_filter = ila_filter.generate_ila_filter(client, user_query)
-        logger.debug(f"Generated ILA filter: {generated_ila_filter}")
+        logger.info(f"Generated ILA filter: {generated_ila_filter}")
 
         # Query ILA
         ila_result = query_ila(generated_ila_filter, client)
@@ -47,7 +47,7 @@ def main(user_query: str, client):
     #"which formations are drilled in well 15-F-1 C"# and 15/9-F-11 A
 
 if __name__ == "__main__":
-    raw_user_query ="which rig performed on hole sections 8.5 bit size"#"What is the average ROP in the Tor formation?"# "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
+    raw_user_query ="Compute the average of the average rops of each well."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"What is the average ROP in the Tor formation?"# "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
 
     # Choose authentication mode
     interactive_mode = True  # Set to False for client credentials authentication
