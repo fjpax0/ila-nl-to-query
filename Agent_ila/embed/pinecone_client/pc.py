@@ -3,11 +3,9 @@ from pinecone import Pinecone
 from dotenv import load_dotenv
 import os
 load_dotenv()
-import logging
 pc = Pinecone(api_key=os.getenv('PINECONE_API'))
 index = pc.Index("ilastream")
 import logging
-
 from log_utils.logger_config import logger
 
 class PineconeClient:
