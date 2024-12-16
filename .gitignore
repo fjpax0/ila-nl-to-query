@@ -136,3 +136,5 @@ Agent_ila/embed/data_to_embed/witsml_queries_samp.jsonl
 Agent_ila/.DS_Store
 .DS_Store
 .DS_Store
+Agent_ila/dynamic_prompt.txt
+Agent_ila/static_prompt.txt
