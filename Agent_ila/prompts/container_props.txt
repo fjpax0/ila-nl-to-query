@@ -5,10 +5,15 @@ container_properties_with_names = {
         "description": "Torque applied to the drill string at the surface. Unit: Newton-meters.",
         "name": "Surface Torque"
     },
-    "averageROP": {
+    "rateOfPenetration": {
         "type": "Float64",
-        "description": "Average rate of penetration of the drill bit. Most closely associated with Drilling performance. Unit: meters per hour.",
-        "name": "Average Rate of Penetration (ROP)"
+        "description": "Rate of penetration of the drill bit. Most closely associated with Drilling performance. Unit: meters per hour.",
+        "name": "Rate of Penetration (ROP)"
+    },
+    "holeSize": {
+        "type": "Float64",
+        "description": "This is the whole size of the well. Unit: inches.",
+        "name": "Hole size"
     },
     "surfaceRPM": {
         "type": "Float64",
