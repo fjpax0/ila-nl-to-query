@@ -2,7 +2,7 @@
 Example 1:
 Constants: {"ILA_SPACE": "wells_data_model","ILA_CONTAINER_ID": "test_depth_logs_container"}
 User query: What is the average ROP in the Tor formation?
-Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"avg_averageROP": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}
+Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"avg_rateOfPenetration": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "rateOfPenetration"]}}}}
 
 \n\n
 Example 2:
@@ -14,13 +14,13 @@ Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_d
 Example 3:
 Constants: {"ILA_SPACE": "wells_data_model","ILA_CONTAINER_ID": "test_depth_logs_container"}
 User query: What is the average ROP in the Tor formation by wellbore?
-Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"unique_external_ids": {"uniqueValues": {"property": ["wells_data_model", "test_depth_logs_container", "wellName"], "aggregates": {"avg_ROP": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}}}}
+Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"unique_external_ids": {"uniqueValues": {"property": ["wells_data_model", "test_depth_logs_container", "wellName"], "aggregates": {"avg_ROP": {"avg": {"property": ["wells_data_model", "test_depth_logs_container", "rateOfPenetration"]}}}}}}}
 
 \n\n
 Example 4:
 Constants: {"ILA_SPACE": "wells_data_model","ILA_CONTAINER_ID": "test_depth_logs_container"}
 User query: Which drill bit has the highest ROP in the Tor Formation?
-Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"by_drill_bit": {"uniqueValues": {"property": ["wells_data_model", "test_depth_logs_container", "drillBitUsed"], "aggregates": {"max_rop": {"max": {"property": ["wells_data_model", "test_depth_logs_container", "averageROP"]}}}}}}}
+Generated query: {"filter": {"equals": {"property": ["wells_data_model", "test_depth_logs_container", "formation"], "value": "Tor"}}, "aggregates": {"by_drill_bit": {"uniqueValues": {"property": ["wells_data_model", "test_depth_logs_container", "drillBitUsed"], "aggregates": {"max_rop": {"max": {"property": ["wells_data_model", "test_depth_logs_container", "rateOfPenetration"]}}}}}}}
 
 \n\n
 Example 5: 
