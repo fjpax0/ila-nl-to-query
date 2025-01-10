@@ -28,8 +28,8 @@ def query_preprocess(raw_query: str, client) -> list:
         "{'Query': ['Show me the formations drilled in wells 1/2-1 and 1/2-2.']}\n\n"
         "Example 3: Raw user query: Show me the formations drilled in each well 1/2-1 and 1/2-2.\n"
         "{'Query': ['Show me the formations drilled in well 1/2-1.', 'Show me the formations drilled in well 1/2-2.']}\n"
-        "Example 4: Raw user query: Calculate the average of the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.\n"
-        "{'Query': ['Calculate the average of the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.']}\n"
+        "Example 4: Raw user query: Calculate the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.\n"
+        "{'Query': ['Calculate the average rops for all wells that drilled Tor formation and choose the well that drilled the fastest.']}\n"
     )
     
     # Body for the AI request
