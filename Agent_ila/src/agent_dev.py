@@ -49,7 +49,7 @@ class IlaFilter:
             #query from the pinecone
             assert len(user_query_embedding) == 1
             user_query_embedding = user_query_embedding[0]['embedding']
-            logger.info(f"User query embedded successfully.")
+            logger.debug(f"User query embedded successfully.")
             
             filter_sample = pc_client.query(user_query_embedding, top_k=5, namespace='user_query', format_output=True)
             logger.debug(f"this is the dynamic filter: {filter_sample}")

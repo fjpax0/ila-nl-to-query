@@ -92,12 +92,12 @@ class Logger:
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
     def log_query_response(self, single_user_query: str, ila_filter: dict, ila_result: dict, summarized_response: str):
-        logging.info("=== START QUERY ===")
-        logging.info("Query: %s", single_user_query)
+        
+        logging.info("Processed Query: %s", single_user_query)
         logging.info("ILA query: %s", ila_filter)
         logging.info("ILA Raw result: %s", ila_result)
-        logging.info("Response: %s", summarized_response)
-        logging.info("=== END QUERY ===")
+        logging.info("Agent Response: %s", summarized_response)
+        logging.info("=== END Agent ===")
 
     def info(self, message):
         logging.info(message)
