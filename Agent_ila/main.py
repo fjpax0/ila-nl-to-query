@@ -46,14 +46,41 @@ def main(user_query: str, client):
     #"What is the average inclination that the Hugin formation is drilled?"
     #"which formations are drilled in well 15-F-1 C"# and 15/9-F-11 A
 
-if __name__ == "__main__":
-    raw_user_query ="show me the well that has greater than 30 m/hr rop."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."#"What is the average rops for each well"
 
-     #"What is the average rops for each well"    single filter and agg
-    #"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."
+
+if __name__ == "__main__":
+    raw_user_query ="which rig performed on hole sections 8.5 and 17.5 bit size"#"show me the wells that drilled in the Tor Formation."#"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"#"show me the wells that has greater than 30 m/hr rop in the Tor formation."#"which rig drilled the hole sections 8.5 and 17.5. Also tell me which formations were drilled in well 15-F-11 A"#"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"#"Which well performed the best in the 8.5 inch hole section?"#"Which well drilled the fastest in the 8.5 inch hole section on average?"
+    #"show me the wells that has greater than 30 m/hr rop in the Tor formation."
+    #"show me the wells that drilled in the Tor Formation."
+    #"show me the wells that has greater than 30 m/hr rop in the Tor formation."
+    #"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and take the max."
+    #"which rig performed on hole sections 8.5 and 17.5. Also tell me which formations were drilled in well 15-F-11 A"
+    #"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"
+
+
+
+
+
+
+
+
     #"which rig performed on hole sections 8.5 and 17.5 bit size"
     #"show me the well that has greater than 30 m/hr rop."
+    #"which rig performed on hole sections 8.5 and 17.5 bit size"
 
+    #"Which wells were drilled?"#"show me the well that has greater than 30 m/hr rop."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and take the max."
+
+ 
+
+
+
+
+
+
+    #"What is the average rops for each well"    single filter and agg
+    #"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."
+    
+       #"show me the well that has greater than 30 m/hr rop."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."#"What is the average rops for each well"
 
     #"Calculate the average hookload for each well."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Compute the average of the average rops of each well."#"#"What is the average ROP in the Tor formation?"# "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
     
@@ -76,11 +103,15 @@ if __name__ == "__main__":
         # Preprocess the query
         query_id = logger.generate_short_id()
         logger.info(f"Query ID: {query_id}")
-        
+        logging.info("=== START Agent ===")
         split_query = query_preprocess(raw_user_query, client)
         
         logger.debug(f"Query preprocessing completed: {split_query}")
         logger.info(f"Raw user query: {raw_user_query}")
+
+        compile_qa = f"""This is the raw user query that has been split into multiple queries: {raw_user_query}. The split queries and answers are as follows: \n"""
+
+
         for single_user_query in split_query:
             logger.debug(f"Processing query: {single_user_query}")
 
@@ -92,10 +123,16 @@ if __name__ == "__main__":
 
             # Summarize the result
             summary_result = summarizer(client).single_summary(single_user_query, ila_result)
-          
 
             # Log the query-response pair
             logger.log_query_response(single_user_query,ila_filter,  ila_result, summary_result)
+
+            compile_qa += f"Query: {single_user_query} \nAnswer: {summary_result}\n"
+        print(compile_qa)
+        compile_qa = summarizer(client).combined_summary(compile_qa)
+        logger.info(f"Combined summary: {compile_qa}")
+
+
 
     except Exception as e:
         logger.error(f"Error during query processing: {e}")
