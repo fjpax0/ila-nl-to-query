@@ -59,7 +59,32 @@ class summarizer:
     def single_summary(self, query:str, text: str) -> str:
 
         summary = self._call_llm(self._create_prompt(query, text))
+        return summary
 
     
+    def combined_summary(self, queries_answers:str) -> str:
+
+
+        prompt = {
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are a AI assistant that compiles the individual answers to a single answer, that addresses the raw user query. Ensure that the answer is complete, concise, and easily readable by a user. Think thoroughly and step by step."
+                ),
+            },
+            {"role": "user", "content":  f"{queries_answers}" },
+        ],
+       # "functions": functions,
+      #  "functionCall": {"name": "get_the_fact_and_joke"},
+        "temperature": 0,
+        "model": "gpt-4o-mini",
+    }
+        summary = self._call_llm(prompt)
+
         return summary
+        
+
+    
+        
 
