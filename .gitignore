@@ -138,3 +138,5 @@ Agent_ila/.DS_Store
 .DS_Store
 Agent_ila/dynamic_prompt.txt
 Agent_ila/static_prompt.txt
+Agent_ila/ila_bugs.txt
+Agent_ila/prompts/chain_of_thought/cot_query.txt
