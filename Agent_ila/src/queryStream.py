@@ -22,7 +22,7 @@ def query_ila(gen_query, client) -> Dict[str, Any]:
             "aggregates": gen_query["aggregates"],
         }
         result = client.post(
-            url="/api/v1/projects/welldelivery-demo/streams/logs4/records/aggregate",
+            url="/api/v1/projects/welldelivery-demo/streams/logs5/records/aggregate",
             json=request,
             headers={"cdf-version": "alpha"},
         )
@@ -36,7 +36,7 @@ def query_ila(gen_query, client) -> Dict[str, Any]:
             "aggregates": gen_query["aggregates"],
         }
         result = client.post(
-            url="/api/v1/projects/welldelivery-demo/streams/logs4/records/aggregate",
+            url="/api/v1/projects/welldelivery-demo/streams/logs5/records/aggregate",
             json=request,
             headers={"cdf-version": "alpha"},
         )
@@ -50,7 +50,7 @@ def query_ila(gen_query, client) -> Dict[str, Any]:
             "filter": gen_query["filter"],
         }
         result = client.post(
-            url="/api/v1/projects/welldelivery-demo/streams/logs4/records/filter",
+            url="/api/v1/projects/welldelivery-demo/streams/logs5/records/filter",
             json=request,
             headers={"cdf-version": "alpha"},
         )
