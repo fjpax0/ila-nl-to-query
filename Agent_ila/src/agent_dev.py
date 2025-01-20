@@ -3,7 +3,7 @@ from embed.pinecone_client.pc import PineconeClient
 import json
 import logging
 from embed.embedding_api.embeddings import CreateEmbeddings
-
+from src.json_handler import correct_json_with_llm
 pc_client = PineconeClient()
 create_emb = CreateEmbeddings()
 
@@ -125,11 +125,19 @@ class IlaFilter:
         
         response_items = response["choices"][0]
   
+        print('hello0')
+        print(response_items["message"]['content'])
+        try:
+            json_response = json.loads(response_items["message"]['content'])
+            logger.debug(f"Final filter generated: {json_response}")
+            return json.loads(response_items["message"]['content']),  self.container_properties
+        except json.JSONDecodeError as e:
+          
+            corrected_json = correct_json_with_llm(response_items["message"]['content'], client)
+            return json.loads(corrected_json) , self.container_properties
+ 
         
-        json_response = json.loads(response_items["message"]['content'])
+        
+        
 
-        logger.debug(f"Final filter generated: {json_response}")
         
-        
-
-        return json.loads(response_items["message"]['content'])

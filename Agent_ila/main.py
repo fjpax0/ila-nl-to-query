@@ -2,7 +2,7 @@ import os
 import logging
 from log_utils.logger_config import logger
 from dotenv import load_dotenv
-from cogniteClient.congite_interac import get_client
+from cogniteClient.cognite_interac import get_client
 from src.agent_dev import IlaFilter
 # Load environment variables
 from src.queryStream import query_ila
@@ -21,7 +21,7 @@ def main(user_query: str, client):
         # Create an instance of IlaFilter
         logger.debug("Initializing IlaFilter...")
         ila_filter = IlaFilter()
-        generated_ila_filter = ila_filter.generate_ila_filter(client, user_query)
+        generated_ila_filter, _container_properties = ila_filter.generate_ila_filter(client, user_query)
         #logger.info(f"Generated ILA filter: {generated_ila_filter}")
 
         # Query ILA
@@ -32,62 +32,20 @@ def main(user_query: str, client):
         append_to_json('generated_f_prompt.json', generated_ila_filter, user_query, ila_result)
         logger.debug("Results saved to generated_f_prompt.json.")
 
-        return ila_result, generated_ila_filter 
+        return ila_result, generated_ila_filter , _container_properties
 
     except Exception as e:
-        logger.error(f"Error in main function: {e}")
+        #logger.error(f"Error in main function: {e}")
+        logger.exception("Error in main function:")
         raise
 
-# if __name__ == "__main__":
-#     raw_user_query =
-    #"what is the average axial and lateral vibration for well 15-F-11 A" 
-    #"Whaw well had the highest average axial vibration and lateral vibration in the Tor formation."
-    #"Which rig performed the best the Hod formation based on the ROP."#"In wells 15-F-11 A and 15-F-1 C, which formations were drilled?" #"Which drill bits were used for 8.5 and 17.5 sizes?"
-    #"What is the average inclination that the Hugin formation is drilled?"
-    #"which formations are drilled in well 15-F-1 C"# and 15/9-F-11 A
+
 
 
 
 if __name__ == "__main__":
-    raw_user_query ="which rig performed on hole sections 8.5 and 17.5 bit size"#"show me the wells that drilled in the Tor Formation."#"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"#"show me the wells that has greater than 30 m/hr rop in the Tor formation."#"which rig drilled the hole sections 8.5 and 17.5. Also tell me which formations were drilled in well 15-F-11 A"#"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"#"Which well performed the best in the 8.5 inch hole section?"#"Which well drilled the fastest in the 8.5 inch hole section on average?"
-    #"show me the wells that has greater than 30 m/hr rop in the Tor formation."
-    #"show me the wells that drilled in the Tor Formation."
-    #"show me the wells that has greater than 30 m/hr rop in the Tor formation."
-    #"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and take the max."
-    #"which rig performed on hole sections 8.5 and 17.5. Also tell me which formations were drilled in well 15-F-11 A"
-    #"For each drill bit, what is the average ROP in the 8.5 inch hole section by formation?"
-
-
-
-
-
-
-
-
-    #"which rig performed on hole sections 8.5 and 17.5 bit size"
-    #"show me the well that has greater than 30 m/hr rop."
-    #"which rig performed on hole sections 8.5 and 17.5 bit size"
-
-    #"Which wells were drilled?"#"show me the well that has greater than 30 m/hr rop."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and take the max."
-
- 
-
-
-
-
-
-
-    #"What is the average rops for each well"    single filter and agg
-    #"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."
-    
-       #"show me the well that has greater than 30 m/hr rop."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Find the well that drilled the fastest on the 8.5 section based on the average rop. You need to average rop for each well and and take the max."#"What is the average rops for each well"
-
-    #"Calculate the average hookload for each well."#"which rig performed on hole sections 8.5 and 17.5 bit size"#"Compute the average of the average rops of each well."#"#"What is the average ROP in the Tor formation?"# "what is the average axial and lateral vibration for well 15-F-11 A" # Input the query string here
-    
-    
-   
-    
-    #
+    raw_user_query ="calculate the average rop for each wells 15-F-11 A and 15-F-1 C?"#"In wells 15-F-11 A and 15-F-1 C, which formations were drilled and Which drill bits were used for 8.5 and 17.5 sizes?" #"summarize the daily drillign report for the  8.5 hole Section of well  15-F-1 C"#"show me the wells that drilled in the Tor Formation."#"Take all the daily drilling report of well 15-F-11 A. Give me three events that are important on the well operation."#"summarize the 8.5 section of wells 15-F-11 A and 15-F-1 C. give the average ROP, the dr ill bit used and the rig used to drill."#"Tell me the some info on the daily drilling report of well 15-F-11 A."
+    #    "summarize the daily drilling report of 8.5 section of wells 15-F-11 A "
     # Choose authentication mode
     interactive_mode = True  # Set to False for client credentials authentication
 
@@ -111,7 +69,7 @@ if __name__ == "__main__":
 
         compile_qa = f"""This is the raw user query that has been split into multiple queries: {raw_user_query}. The split queries and answers are as follows: \n"""
 
-
+        
         for single_user_query in split_query:
             logger.debug(f"Processing query: {single_user_query}")
 
@@ -119,10 +77,10 @@ if __name__ == "__main__":
             logger.debug_split_query(raw_user_query, split_query)
 
             # Process the query through main
-            ila_result,ila_filter = main(single_user_query, client)
+            ila_result,ila_filter, container_properties = main(single_user_query, client)
 
             # Summarize the result
-            summary_result = summarizer(client).single_summary(single_user_query, ila_result)
+            summary_result = summarizer(client).single_summary(single_user_query, ila_result, container_properties)
 
             # Log the query-response pair
             logger.log_query_response(single_user_query,ila_filter,  ila_result, summary_result)
