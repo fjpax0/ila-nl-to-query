@@ -2,8 +2,25 @@ import json
 import time
 import logging
 from log_utils.logger_config import logger
+import re
 
-def correct_json_with_llm(input_json, client, max_retries=2, backoff_factor=2):
+
+def remove_last_brace(json_string: str) -> str:
+    """
+    Finds the last '}' in the string and removes it.
+    Returns the original string if no '}' is found.
+    """
+    # Find the index of the final curly brace
+    last_brace_index = json_string.rfind('}')
+    
+    # If there's no '}', return the original string
+    if last_brace_index == -1:
+        return json_string
+    
+    # Remove exactly that one brace
+    return json_string[:last_brace_index] + json_string[last_brace_index+1:]
+
+def correct_json_with_llm(input_json, client, max_retries=1, backoff_factor=0):
     """
     Corrects mismatched curly braces in a JSON string using a language model with limited retries.
 
@@ -30,7 +47,7 @@ When given a JSON input:
 2. **Validate Syntax**: Verify that the JSON adheres to standard syntax rules, including proper use of commas, colons, quotes, and brackets.
 3. **Provide Feedback**:
    - If the JSON is valid, confirm its correctness.
-   - If there are errors, identify the specific issues and do the corrections into json format.
+   - If there are errors, identify the specific issues and do the corrections into JSON format.
 
 **Guidelines**:
 - Do not execute or interpret the data within the JSON; focus solely on its structural validity.
@@ -45,7 +62,7 @@ When given a JSON input:
 Sample corrected output:
 {"filter":{"exists":{"property":["test_dw_well_logs","test_depth_logs_container","dailyDrillingReport"]}},"aggregates":{"important_events":{"uniqueValues":{"property":["test_dw_well_logs","test_depth_logs_container","dailyDrillingReport"],"aggregates":{"count_events":{"count":{"property":["test_dw_well_logs","test_depth_logs_container","dailyDrillingReport"]}}}}}}}
 
-output: Strictly: the output should just be the json nothing else.
+output: Strictly: the output should just be the JSON nothing else.
 
 """
 
@@ -59,7 +76,7 @@ output: Strictly: the output should just be the json nothing else.
             logger.info(f"Attempt {attempt} of {max_retries} to correct JSON.")
 
             # Construct the user message
-            user_message = f"json to fix: {input_json}"
+            user_message = f"JSON to fix: {input_json}"
 
             # Prepare the request payload
             body = {
@@ -80,7 +97,7 @@ output: Strictly: the output should just be the json nothing else.
             # Extract the assistant's reply
             corrected_json = response['choices'][0]['message']['content'].strip()
             last_corrected_json = corrected_json  # Store the last attempted corrected JSON
-            
+          
             # Attempt to validate the corrected JSON
             try:
                 print('last_corrected_json', last_corrected_json)
@@ -88,7 +105,7 @@ output: Strictly: the output should just be the json nothing else.
                 json.loads(last_corrected_json)
                 # Re-serialize to ensure proper formatting
                 
-                logger.info("JSON corrected and validated successfully.")
+                logger.info(f"JSON corrected and validated successfully.{json.load(last_corrected_json)}")
                 return last_corrected_json  # Success, exit the function
             except json.JSONDecodeError as e:
                 logger.warning(f"JSONDecodeError on attempt {attempt}: {e}")
@@ -99,8 +116,7 @@ output: Strictly: the output should just be the json nothing else.
                 else:
                     logger.error("Maximum retry attempts reached. Unable to correct JSON.")
                     logger.error(f"Final incorrect JSON: {last_corrected_json}")
-                    raise ValueError(f"Unable to correct JSON after {max_retries} attempts.") from e
-
+                   
         except Exception as e:
             logger.exception(f"An error occurred on attempt {attempt}: {e}")
             if attempt < max_retries:
@@ -111,22 +127,30 @@ output: Strictly: the output should just be the json nothing else.
                 logger.error("Maximum retry attempts reached. Unable to correct JSON due to repeated errors.")
                 if last_corrected_json:
                     logger.error(f"Final incorrect JSON: {last_corrected_json}")
-                raise RuntimeError(f"Unable to correct JSON after {max_retries} attempts due to errors.") from e
+                
 
     # After all retries are exhausted, attempt to fix by removing the final '}'
+
+    
     if last_corrected_json:
-        logger.info("Attempting to fix JSON by removing the final '}'.")
-        fixed_json = last_corrected_json.rstrip('}')
         try:
-            logger.info("Validating the JSON after removing the final '}'.")
-            json.loads(fixed_json)
+            print('last1')
+            logger.info("Attempting to fix JSON by removing the final '}'.")
+            last_corrected_json = remove_last_brace(input_json)
+            print('last_corrected_json111',type(last_corrected_json), last_corrected_json)
+           
+            json.loads(last_corrected_json)#json.loads(last_corrected_json)
             logger.info("JSON fixed by removing the final '}' and validated successfully.")
-            return fixed_json  # Return the fixed JSON
+        
+
+            return last_corrected_json  # Return the fixed JSON
         except json.JSONDecodeError as e:
+            fixed_json = last_corrected_json
             logger.error("Unable to fix JSON by removing the final '}'.")
             logger.error(f"Final attempted JSON after removal: {fixed_json}")
             raise ValueError(f"Unable to correct JSON after {max_retries} attempts.") from e
 
     # If all retries are exhausted without a valid JSON, raise an error
+    print('last2')
     logger.error(f"Final incorrect JSON after all retries: {last_corrected_json}")
-    raise ValueError(f"Unable to correct JSON after {max_retries} attempts.")
+    raise ValueError(f"Unable to correct JSON after {max_retries} attempts.222222")
